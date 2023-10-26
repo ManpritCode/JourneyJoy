@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EditDeleteUpdateActivity">
+
+    <ImageView
+        android:id="@+id/airplanImg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_202sdp"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/airplan"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:text="@string/destinations"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="@id/airplanImg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_23sdp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/_23sdp" />
+
+    <EditText
+        android:id="@+id/cityNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/cityName"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        app:layout_constraintLeft_toRightOf="@id/leftGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/rightGuideLine"
+        app:layout_constraintTop_toBottomOf="@id/airplanImg" />
+
+    <EditText
+        android:id="@+id/countryNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/countryName"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:textSize="@dimen/_15sdp"
+        app:layout_constraintLeft_toRightOf="@id/leftGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/rightGuideLine"
+        app:layout_constraintTop_toBottomOf="@id/cityNameEditText" />
+
+    <EditText
+        android:id="@+id/descriptionEditTExt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        app:layout_constraintLeft_toRightOf="@id/leftGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/rightGuideLine"
+        app:layout_constraintTop_toBottomOf="@id/countryNameEditText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addNewDestinationBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:visibility="invisible"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/descriptionEditTExt"
+        app:layout_constraintLeft_toRightOf="@id/leftGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/rightGuideLine" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/updateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        app:layout_constraintRight_toLeftOf="@id/EditBtn"
+        app:layout_constraintBottom_toBottomOf="@id/addNewDestinationBtn"
+        app:layout_constraintLeft_toRightOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/addNewDestinationBtn"
+        android:backgroundTint="#FFEB3B" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/EditBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        app:layout_constraintLeft_toRightOf="@id/updateBtn"
+        app:layout_constraintRight_toLeftOf="@id/rightGuideLine"
+        app:layout_constraintBottom_toBottomOf="@id/addNewDestinationBtn"
+        app:layout_constraintTop_toTopOf="@id/addNewDestinationBtn"
+        android:backgroundTint="#09F413" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

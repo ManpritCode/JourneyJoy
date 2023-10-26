@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">JourneyJoy</string>
     <string name="Destinations">Destinations</string>
+    <string name="destinations">New Destination</string>
+    <string name="cityName">city Name</string>
+    <string name="countryName">country</string>
+    <string name="description">Description</string>
 </resources>
