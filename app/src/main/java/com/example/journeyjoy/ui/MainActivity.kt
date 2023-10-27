@@ -3,40 +3,41 @@ package com.example.journeyjoy.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.journeyjoy.R
-import com.example.journeyjoy.data.network_api.ApiMehtods
-import com.example.journeyjoy.data.network_api.ServiceClient
-import com.example.journeyjoy.models.DestinationModal
+import com.example.journeyjoy.adapters.CountryListRecyclerViewAdapter
+import com.example.journeyjoy.data.localDb.Appdb
+import com.example.journeyjoy.data.network_api.ApiMethodsInterface
+import com.example.journeyjoy.data.network_api.Apiclient
+import com.example.journeyjoy.databinding.ActivityMainBinding
 import com.example.journeyjoy.repository.AppRepository
+import com.example.journeyjoy.viewModel.MainViewModel
+import com.example.journeyjoy.viewModel.MainViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.create
 
 class MainActivity : AppCompatActivity() {
+    val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+    lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-         AppRepository().apply {
-             val service = ServiceClient.ServiceProvide(ApiMehtods::class.java)
-             val requestCall = service.getDestinations()
-             requestCall.enqueue(object : Callback<List<DestinationModal>> {
-                 override fun onResponse(
-                     call: Call<List<DestinationModal>>,
-                     response: Response<List<DestinationModal>>
-                 ) {
-                     if (response.isSuccessful){
-                         Log.d("check",response.body().toString())
-                     }
+        setContentView(binding.root)
+        val servise = Apiclient.service().create(ApiMethodsInterface::class.java)
+        val db = Appdb.getInstance(this)
+        val repository = AppRepository(servise,db)
+        mainViewModel =
+            ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
 
-
-                 }
-
-                 override fun onFailure(call: Call<List<DestinationModal>>, t: Throwable) {
-                     Log.d("check",t.toString() )
-
-                 }
-
-             })
-         }
+        mainViewModel.getResponse.observe(this, Observer {
+            binding.RvView.adapter = CountryListRecyclerViewAdapter(it)
+        })
     }
 }

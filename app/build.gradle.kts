@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -31,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -55,11 +57,22 @@ dependencies {
     val arch_version = "2.2.0"
 
 
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
-    //RetroFit
-    implementation ("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    val room_version = "2.6.0" // Replace with the latest version of Room
+
+    implementation ("androidx.room:room-runtime:$room_version")
+    kapt( "androidx.room:room-compiler:$room_version") // For Kotlin projects
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation ("androidx.room:room-ktx:$room_version")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     //JSON
-    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
 
